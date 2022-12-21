@@ -51,8 +51,12 @@ if __name__ == "__main__":
     count = 1
     for file in file_list:
         if file[-4:] == "pptx":
-            del_ppt_max_page(file)
-            print('正在处理第 {}/{} 个文件：{}'.format(count, len(file_list), file))
+            try:
+                del_ppt_max_page(file)
+                print('正在处理第 {}/{} 个文件：{}'.format(count, len(file_list), file))
+            except Exception as e:
+                print(e)
+                print('正在处理第 {}/{} 个文件：{},此文件出错'.format(count, len(file_list), file))
         if file[-3:] == "ppt":
             ppt1 = powerpoint.Presentations.Open(file)
             ppt1.SaveAs(file[:-4] + '.pptx')
