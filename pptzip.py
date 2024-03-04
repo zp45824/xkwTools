@@ -16,10 +16,10 @@ def answer_zip(file_path):
         file_list = os.listdir(file_path)
         answer_list = []
         for item in file_list:
-            if item.endswith('答案.pdf'):
+            if item.endswith('（精讲版）.ppt'):
                 answer_list.append(item)
         for item in answer_list:
-            zip_name = item.split("答案")[0]
+            zip_name = item.split("（精讲版）")[0]
             zip_file_path = file_path + "\\" + zip_name + ".zip"
             zip_file = zipfile.ZipFile(zip_file_path, "w")
             print("创建zip文件："+str(zip_file_path))
@@ -27,8 +27,8 @@ def answer_zip(file_path):
             zip_file.write(answer_file, item)
             print("添加"+str(answer_file)+"到"+zip_file_path)
             os.remove(answer_file)
-            content_file = file_path + "\\" + item.replace('答案', '')
-            zip_file.write(content_file, item.replace('答案', ''))
+            content_file = file_path + "\\" + item.replace('（精讲版）', '（精练版）')
+            zip_file.write(content_file, item.replace('（精讲版）', '（精练版）'))
             print("添加" + str(content_file) + "到" + zip_file_path)
             os.remove(content_file)
             zip_file.close()
